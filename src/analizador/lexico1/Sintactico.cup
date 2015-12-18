@@ -1,0 +1,57 @@
+package analizador.lexico1;
+
+import java.io.*;
+
+import java.lang.*;
+
+import java_cup.runtime.*;
+
+import java_cup.runtime.Symbol;
+
+import java.util.*;
+
+
+action code{:
+
+
+void print(String msj)
+
+   {System.out.println(msj);}
+
+:}
+
+
+parser code {:
+
+
+public void syntax_error(Symbol st){
+Token t =(Token)st.value;
+report_error("Error Sintactico");
+}
+:}
+
+
+/////////////////////////////////////////////////
+//////simbolos terminales generales//////////////
+/////////////////////////////////////////////////
+
+terminal IDENTIFICADOR;
+
+
+///////////////////SIMBOLOS NO TERMINALES ///////////////////
+
+
+non terminal DECLARACION
+non terminal TIPO;
+
+
+start with DECLARACION;
+
+
+/***********inicio de la gramatica *******************/
+
+
+DECLARACION  ::=   DECLARACION TIPO;
+
+
+/*********************Fin de la gramatica ********************/
